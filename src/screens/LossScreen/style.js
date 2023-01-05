@@ -31,4 +31,15 @@ export default StyleSheet.create({
     marginTop: 15,
     marginBottom: 16,
   },
+  closeIconContainer: {
+    alignSelf: 'flex-end',
+  },
+  buttonContainer: {
+    width: '90%',
+    backgroundColor: color.white,
+    marginTop: 10,
+    borderColor: color.buttonGreen,
+    borderWidth: 1,
+    marginBottom: 16,
+  },
 });

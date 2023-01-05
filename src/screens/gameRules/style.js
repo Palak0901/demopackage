@@ -7,8 +7,8 @@ import {color} from '../../theme';
 
 export default styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: color.themeColor,
+    flex: 1,
   },
   mainView: {
     marginTop: 30,
@@ -49,7 +49,7 @@ export default styles = StyleSheet.create({
     borderRadius: 12,
     marginTop: 10,
     borderColor: color.white,
-    backgroundColor: color.bagroundTheme,
+    backgroundColor: color.backgroundTheme,
   },
   nextButton: {
     width: '50%',
@@ -99,5 +99,8 @@ export default styles = StyleSheet.create({
   scrollViewContainer: {
     flexGrow: 1,
     paddingBottom: 30,
+  },
+  listView: {
+    marginTop: 20,
   },
 });

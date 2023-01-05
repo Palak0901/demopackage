@@ -30,16 +30,16 @@ const UnlockScreen = () => {
         <Image source={imageindex.lockWhite} style={style.imageStyle} />
         <Text style={style.unlockText}>Unlock new game</Text>
         <Text style={style.descriptionText}>
-          You can unlock a new wordle game{'\n'} before the new time is unlocked
+          You can unlock a new word game{'\n'} before the new time is unlocked
           {'\n '}
-          for 5 TerCoins from your{'\n '} TerCoin Wallett
+          for 5 TerCoins from your{'\n '} TerCoin Wallet
         </Text>
         <Button
-          name={'Unlock after 10 Minutes(free)'}
+          name={'Unlock after 10 Minutes (free)'}
           buttonContainer={style.freeButton}
         />
         <Button
-          name={'Unlock immediately (5 TerCOINS)'}
+          name={'Unlock immediately (5 TerCoins)'}
           buttonContainer={style.coinButton}
           buttonText={{color: color.buttonGreen}}
         />

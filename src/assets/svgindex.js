@@ -1,4 +1,5 @@
 import BackArrow from './svg/backArrow';
+import CloseIcon from './svg/closeIcon';
 import Delete from './svg/delete';
 import NextArrow from './svg/nextArrow';
 import Send from './svg/send';
@@ -14,4 +15,5 @@ export default {
   user: User,
   upArrow: UpArrow,
   nextArrow: NextArrow,
+  closeIcon: CloseIcon,
 };

@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import React from 'react';
-import Svgindex from '../../../assets/svgindex';
+import SvgIndex from '../../../assets/svgIndex';
 import {color} from '../../../theme';
 
 const LeaderBoardCard = props => {
@@ -15,7 +15,7 @@ const LeaderBoardCard = props => {
         <Text style={styles.number}>{props.item.number}</Text>
         <Text style={styles.rank}>#{props.item.rank}</Text>
         <TouchableOpacity activeOpacity={0.5}>
-          <Svgindex.upArrow />
+          <SvgIndex.upArrow />
         </TouchableOpacity>
       </View>
     </TouchableOpacity>

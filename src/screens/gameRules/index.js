@@ -4,18 +4,18 @@ import style from './style';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Button, CustomStatusBar, Header } from '../../components';
 import { color } from '../../theme';
-import svgindex from '../../assets/svgindex';
+import svgIndex from '../../assets/svgIndex';
 import screenName from '../../navigation/screenName';
 import GameContext from '../../context/GameContext';
 import { get, doPostWithAuth } from '../../service/config/request';
 import constant from '../../service/config/constant';
+import { useDispatch, useSelector } from 'react-redux';
+import { startGameSuccess } from '../../services/redux/userGame/action';
+import Confirmation from '../../components/common/confirmation/Confirmation';
+import GameRulesCard from '../../components/card/gameRulesCard/GameRulesCard';
+import gameRulesConstant from './gameRules.constant';
 
 const GameRules = props => {
-  const gameInterface = useContext(GameContext);
-  const wordOne = ['W', 'E', 'A', 'R', 'Y'];
-  const wordTwo = ['P', 'I', 'L', 'L', 'S'];
-  const wordThree = ['V', 'A', 'G', 'U', 'E'];
-
   const getUserDetails = () => {
     get(`${constant.participation}?id=${16}`).then(res => {
       console.log('Get Data success', res);
@@ -39,12 +39,12 @@ const GameRules = props => {
         gameInterface.containerStyle.contentContainerStyle,
       ]}>
       <SafeAreaProvider>
-        <CustomStatusBar />
+        <CustomStatusBar backgroundColor={color.themeColor} />
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={style.scrollViewContainer}>
           <Header
-            leftIcon={svgindex.backArrow}
+            leftIcon={svgIndex.backArrow}
             onRightIcon={() =>
               props.navigation.navigate(screenName.leaderBoard)
             }
@@ -52,15 +52,15 @@ const GameRules = props => {
           />
           <View style={style.mainView}>
             <Text style={style.howToPlayText}>How To Play</Text>
-            <Text style={style.triesText}>Guess the wordle in 6 tries.</Text>
+            <Text style={style.triesText}>Guess the word in 6 tries.</Text>
             <View style={style.viewContainer}>
-              <svgindex.nextArrow />
+              <svgIndex.nextArrow />
               <Text style={style.letterText}>
                 Each guess must be a valid 5-letter word.
               </Text>
             </View>
             <View style={style.viewContainer}>
-              <svgindex.nextArrow />
+              <svgIndex.nextArrow />
               <Text style={style.letterText}>
                 The color of the tiles will change to{'\n'} show how close your
                 guess was{'\n'} to the word.
@@ -76,34 +76,19 @@ const GameRules = props => {
                     : color.themeColor,
                 },
               ]}>
-              <View style={{ marginTop: 20 }}>
+              <View style={style.listView}>
                 <FlatList
-                  data={wordOne}
+                  data={gameRulesConstant.wordOne}
                   numColumns={5}
                   scrollEnabled={false}
                   contentContainerStyle={style.contentContainerStyle}
                   renderItem={({ item, index }) => (
-                    <View
-                      style={[
-                        style.boxContainer,
-                        {
-                          backgroundColor:
-                            index == 0 ? color.lightGreen : color.bagroundTheme,
-                        },
-                      ]}>
-                      <Text
-                        style={[
-                          style.itemText,
-                          {
-                            backgroundColor:
-                              index == 0
-                                ? color.lightGreen
-                                : color.bagroundTheme,
-                          },
-                        ]}>
-                        {item}
-                      </Text>
-                    </View>
+                    <GameRulesCard
+                      item={item}
+                      index={index}
+                      showSpot={'1'}
+                      spotColor={color.correctPlace}
+                    />
                   )}
                 />
               </View>
@@ -113,65 +98,37 @@ const GameRules = props => {
               </Text>
               <View>
                 <FlatList
-                  data={wordTwo}
+                  data={gameRulesConstant.wordTwo}
                   numColumns={5}
                   scrollEnabled={false}
                   contentContainerStyle={style.contentContainerStyle}
                   renderItem={({ item, index }) => (
-                    <View
-                      style={[
-                        style.boxContainer,
-                        {
-                          backgroundColor:
-                            index == 1 ? color.tintYellow : color.bagroundTheme,
-                        },
-                      ]}>
-                      <Text
-                        style={[
-                          style.itemText,
-                          {
-                            backgroundColor:
-                              index == 1
-                                ? color.tintYellow
-                                : color.bagroundTheme,
-                          },
-                        ]}>
-                        {item}
-                      </Text>
-                    </View>
+                    <GameRulesCard
+                      item={item}
+                      index={index}
+                      showSpot={'2'}
+                      spotColor={color.wrongSpot}
+                    />
                   )}
                 />
               </View>
               <Text style={style.textOne}>
-                <Text style={style.wText}>I</Text> is the word and in the wrong
-                spot.
+                <Text style={style.wText}>I</Text> is in the word and in the
+                Wrong spot.
               </Text>
               <View>
                 <FlatList
-                  data={wordThree}
+                  data={gameRulesConstant.wordThree}
                   numColumns={5}
                   scrollEnabled={false}
                   contentContainerStyle={style.contentContainerStyle}
                   renderItem={({ item, index }) => (
-                    <View
-                      style={[
-                        style.boxContainer,
-                        {
-                          backgroundColor:
-                            index == 3 ? color.tintRed : color.bagroundTheme,
-                        },
-                      ]}>
-                      <Text
-                        style={[
-                          style.itemText,
-                          {
-                            backgroundColor:
-                              index == 3 ? color.tintRed : color.bagroundTheme,
-                          },
-                        ]}>
-                        {item}
-                      </Text>
-                    </View>
+                    <GameRulesCard
+                      item={item}
+                      index={index}
+                      showSpot={'4'}
+                      spotColor={color.notInSpot}
+                    />
                   )}
                 />
                 <Text style={style.textOne}>

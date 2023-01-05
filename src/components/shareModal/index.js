@@ -75,26 +75,11 @@ const ShareModal = ({visible, onRequestClose, onClose}) => {
   };
   return (
     <ModalContainer visible={visible} onRequestClose={onRequestClose}>
-      <Text
-        style={{
-          fontSize: 18,
-          color: color.gray,
-          fontWeight: 'bold',
-          fontFamily: 'arial',
-          textAlign: 'center',
-          lineHeight: 22,
-        }}>
+      <Text style={style.inviteLabel}>
         Invite your friends{'\n'}and earn 5 TerCoins
       </Text>
       <Image source={imageindex.welcomeImage} />
-      <Text
-        style={{
-          fontSize: 16,
-          color: color.gray,
-          textAlign: 'center',
-          lineHeight: 20,
-          fontFamily: 'arial',
-        }}>
+      <Text style={style.description}>
         When a new user installs the{'\n'} application using your unique link
         {'\n'} both of you will receive 5 TerCoins
       </Text>

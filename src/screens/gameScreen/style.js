@@ -25,26 +25,17 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     backgroundColor: '#25595B',
-    shadowColor: '#fff',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
     textAlign: 'center',
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 6,
     borderRadius: 10,
   },
   boxContainer: {
     backgroundColor: '#25595B',
-    // height: responsiveScreenHeight(8),
-    // width: responsiveScreenWidth(14),
     margin: responsiveScreenWidth(2.4),
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
+    height: responsiveScreenHeight(6),
+    width: responsiveScreenWidth(13),
   },
   listStyle: {
     // alignSelf: 'center',
@@ -75,7 +66,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 5,
     marginTop: 15,
-    width: '25%',
+    width: '26%',
     alignItems: 'center',
     marginBottom: 15,
   },
@@ -100,6 +91,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     flex: 0.8,
+  },
+  playButtonContainer: {
+    marginTop: 40,
+    justifyContent: 'flex-end',
   },
 });
 export default styles;

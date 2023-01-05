@@ -39,8 +39,8 @@ const CustomStatusBar = (props: propType) => {
 };
 
 CustomStatusBar.defaultProps = {
-  backgroundColor: 'white',
-  barStyle: 'dark-content',
+  backgroundColor: color.backgroundTheme,
+  barStyle: 'light-content',
 };
 
 export default memo(CustomStatusBar);

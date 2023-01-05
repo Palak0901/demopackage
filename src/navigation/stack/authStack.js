@@ -14,6 +14,7 @@ import UserProfile from '../../screens/userProfile';
 import GameRules from '../../screens/gameRules';
 import {NavigationContainer} from '@react-navigation/native';
 import {navigationRef} from '../../utility/navigationService';
+import CorrectWord from '../../screens/correctWord';
 
 const Stack = createNativeStackNavigator();
 const authStack = props => {
@@ -43,6 +44,7 @@ const authStack = props => {
       />
       <Stack.Screen component={LeaderBoard} name={screenName.leaderBoard} />
       <Stack.Screen component={UserProfile} name={screenName.userProfile} />
+      <Stack.Screen component={CorrectWord} name={screenName.correctWord} />
     </Stack.Navigator>
   );
 };

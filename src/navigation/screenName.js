@@ -9,4 +9,5 @@ export default {
   leaderBoard: `leaderBoard`,
   userProfile: `userProfile`,
   gameRules: `gameRules`,
+  correctWord: 'correctWord',
 };

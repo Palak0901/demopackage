@@ -10,7 +10,7 @@ const Types = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <CustomStatusBar />
+      <CustomStatusBar backgroundColor={color.themeColor} />
       <View style={styles.buttonContainer}>
         <Button
           name={'Easy'}

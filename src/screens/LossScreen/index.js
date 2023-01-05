@@ -1,10 +1,12 @@
-import {View, Text, Modal, Image} from 'react-native';
+import {View, Text, Modal, Image, TouchableOpacity} from 'react-native';
 import React, {useCallback, useState} from 'react';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import style from './style';
 import {imageindex} from '../../assets';
 import {color} from '../../theme';
 import {Button} from '../../components';
+import SvgIndex from '../../assets/svgIndex';
+import screenName from '../../navigation/screenName';
 const LossScreen = () => {
   const [lossGameModal, setLossGameModal] = useState(false);
   useFocusEffect(
@@ -24,6 +26,11 @@ const LossScreen = () => {
       }}>
       <View style={style.modalContainer}>
         <View style={style.boxContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(screenName.gameRules)}
+            style={style.closeIconContainer}>
+            <SvgIndex.closeIcon fill={color.gameColor} />
+          </TouchableOpacity>
           <Image
             source={imageindex.lossImage}
             style={{height: 70, width: 70, marginTop: 16}}
@@ -45,15 +52,8 @@ const LossScreen = () => {
             buttonContainer={{width: '90%', marginTop: 30}}
           />
           <Button
-            name={'Unlock immediately (5 TerCOINS)'}
-            buttonContainer={{
-              width: '90%',
-              backgroundColor: color.white,
-              marginTop: 10,
-              borderColor: color.buttonGreen,
-              borderWidth: 1,
-              marginBottom: 16,
-            }}
+            name={'Unlock immediately (5 TerCoins)'}
+            buttonContainer={style.buttonContainer}
             buttonText={{color: color.buttonGreen}}
           />
         </View>

@@ -6,4 +6,5 @@ export default {
   lockWhite: require('./image/lockWhite.png'),
   userOne: require('../assets/image/userOne.png'),
   userTwo: require('../assets/image/userTwo.jpeg'),
+  correctBubble: require('../assets/image/correctBubble.png'),
 };

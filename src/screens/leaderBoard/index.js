@@ -6,7 +6,7 @@ import { color } from '../../theme';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { CustomStatusBar, Header } from '../../components';
 import imageIndex from '../../assets/imageIndex';
-import Svgindex from '../../assets/svgindex';
+import SvgIndex from '../../assets/svgIndex';
 import screenName from '../../navigation/screenName';
 import gameContext from '../../context/GameContext';
 
@@ -83,16 +83,16 @@ const LeaderBoard = props => {
         gameInterface?.containerStyle?.contentContainerStyle,
       ]}>
       <SafeAreaProvider>
-        <CustomStatusBar />
+        <CustomStatusBar backgroundColor={color.themeColor} />
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={style.scrollViewContainer}>
           <Header
-            leftIcon={Svgindex.backArrow}
+            leftIcon={SvgIndex.backArrow}
             onPress={() => props.navigation.goBack()}
             title="Leader Board"
           />
-          <Text style={style.allTimeText}>All time</Text>
+          <Text style={style.allTimeText}>All Time</Text>
           {/* Top One Game Solver user Details */}
           <View style={style.topOneContainer}>
             <Image source={leaderBoard[0].image} style={style.topOneImage} />

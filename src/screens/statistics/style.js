@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {color} from '../../theme';
+import {color, font} from '../../theme';
 
 export default styles = StyleSheet.create({
   container: {
@@ -14,8 +14,7 @@ export default styles = StyleSheet.create({
     textAlign: 'center',
   },
   boxContainer: {
-    flex: 1,
-    alignItems: 'center',
+    marginHorizontal: 5,
   },
   boxView: {
     backgroundColor: 'rgba(255,255, 255,0.1)',
@@ -24,7 +23,7 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    backgroundColor: color.bagroundTheme,
+    marginTop: 30,
   },
   numberText: {
     paddingHorizontal: 25,
@@ -34,20 +33,15 @@ export default styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  boxMainView: {
-    flexDirection: 'row',
-    marginTop: 40,
-    marginHorizontal: 10,
-  },
   statisticsText: {
     fontSize: 25,
     color: color.white,
-    fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: font.poppinsSemiBold,
   },
   centerContainer: {
-    flex: 0.8,
+    flexGrow: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: '50%',
   },
 });

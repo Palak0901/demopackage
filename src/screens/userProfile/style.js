@@ -40,7 +40,7 @@ export default styles = StyleSheet.create({
   },
   viewContainer: {
     borderWidth: 0.2,
-    borderRadius: 5,
+    borderRadius: 12,
     paddingHorizontal: 35,
     marginTop: 80,
     padding: 20,

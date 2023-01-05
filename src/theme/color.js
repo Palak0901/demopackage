@@ -1,4 +1,5 @@
 export default {
+  gameColor: `#25595B`,
   themeColor: '#144345',
   white: '#fff',
   lightGreen: '#69B155',
@@ -12,8 +13,12 @@ export default {
   modalTransparant: 'rgba(0, 0, 0, 0.7)',
   lightGreenShade: '#89A29A',
   textBlack: '#000',
+  tillBlack: '#151515',
   skyBlue: '#3DF7FF',
-  bagroundTheme: '#194C4E',
-  tintYellow: 'rgb(177, 155, 79)',
-  tintRed: `rgb(195, 75, 75)`,
+  backgroundTheme: '#194C4E',
+  correctPlace: 'rgb(140, 178, 88)',
+  wrongSpot: 'rgb(171, 159, 86)',
+  notInSpot: `rgb(195, 75, 75)`,
+  borderColor: '#144445',
+  shadowColor: '#4da2a5',
 };

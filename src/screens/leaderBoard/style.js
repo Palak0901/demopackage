@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {color} from '../../theme';
+import {color, font} from '../../theme';
 
 export default styles = StyleSheet.create({
   container: {
@@ -75,17 +75,18 @@ export default styles = StyleSheet.create({
   },
   topOnewordText: {
     fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: font.poppinsSemiBold,
     color: color.white,
   },
   topwordText: {
     fontSize: 12,
-    fontWeight: 'bold',
     color: color.white,
+    fontFamily: font.poppinsSemiBold,
   },
   topOneuserNameText: {
     fontSize: 18,
     color: color.white,
+    fontFamily: font.poppinsRegular,
   },
   topUserNameText: {
     color: color.white,

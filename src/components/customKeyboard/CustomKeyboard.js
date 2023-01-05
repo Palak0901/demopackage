@@ -30,14 +30,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'Q'
-                    ? color.pink
-                    : props.wrongWord?.match(/Q/)
-                    ? color.darkGray
-                    : props.correctWord.includes('Q')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/Q/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/Q/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('Q')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>Q</Text>
@@ -48,14 +47,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'W'
-                    ? color.pink
-                    : props.wrongWord?.match(/W/)
-                    ? color.darkGray
-                    : props.correctWord.includes('W')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/W/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/W/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('W')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>W</Text>
@@ -65,16 +63,14 @@ const CustomKeyboard = (props = defaultProps) => {
             activeOpacity={0.7}
             style={[
               styles.keyStyle,
-              gameProps.containerStyle.keyboardContentStyle,
               {
-                backgroundColor:
-                  props.existWord == 'E'
-                    ? color.pink
-                    : props.wrongWord?.match(/E/)
-                    ? color.darkGray
-                    : props.correctWord.includes('e')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/E/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/E/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('E')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>E</Text>
@@ -85,14 +81,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'R'
-                    ? color.pink
-                    : props.wrongWord?.match(/R/)
-                    ? color.darkGray
-                    : props.correctWord.includes('R')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/R/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/R/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('R')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>R</Text>
@@ -103,14 +98,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'T'
-                    ? color.pink
-                    : props.wrongWord?.match(/T/)
-                    ? color.darkGray
-                    : props.correctWord.includes('T')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/T/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/T/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('T')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>T</Text>
@@ -121,14 +115,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'Y'
-                    ? color.pink
-                    : props.wrongWord?.match(/Y/)
-                    ? color.darkGray
-                    : props.correctWord.includes('Y')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/Y/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/Y/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('Y')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>Y</Text>
@@ -139,14 +132,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'U'
-                    ? color.pink
-                    : props.wrongWord?.match(/U/)
-                    ? color.darkGray
-                    : props.correctWord.includes('U')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/U/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/U/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('U')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>U</Text>
@@ -157,14 +149,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'I'
-                    ? color.pink
-                    : props.wrongWord?.match(/I/)
-                    ? color.darkGray
-                    : props.correctWord.includes('I')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/I/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/I/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('I')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>I</Text>
@@ -175,14 +166,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'O'
-                    ? color.pink
-                    : props.wrongWord?.match(/O/)
-                    ? color.darkGray
-                    : props.correctWord.includes('O')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/O/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/O/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('O')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>O</Text>
@@ -193,14 +183,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'P'
-                    ? color.pink
-                    : props.wrongWord?.match(/P/)
-                    ? color.darkGray
-                    : props.correctWord.includes('P')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/P/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/P/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('P')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>P</Text>
@@ -213,14 +202,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'A'
-                    ? color.pink
-                    : props.wrongWord?.match(/A/)
-                    ? color.darkGray
-                    : props.correctWord.includes('A')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/A/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/A/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('A')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>A</Text>
@@ -231,14 +219,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'S'
-                    ? color.pink
-                    : props.wrongWord?.match(/S/)
-                    ? color.darkGray
-                    : props.correctWord.includes('S')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/S/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/S/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('S')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>S</Text>
@@ -249,14 +236,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'D'
-                    ? color.pink
-                    : props.wrongWord?.match(/D/)
-                    ? color.darkGray
-                    : props.correctWord.includes('D')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/D/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/D/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('D')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>D</Text>
@@ -267,14 +253,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'F'
-                    ? color.pink
-                    : props.wrongWord?.match(/F/)
-                    ? color.darkGray
-                    : props.correctWord.includes('F')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/F/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/F/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('F')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>F</Text>
@@ -285,14 +270,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'G'
-                    ? color.pink
-                    : props.wrongWord?.match(/G/)
-                    ? color.darkGray
-                    : props.correctWord.includes('G')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/G/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/G/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('G')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>G</Text>
@@ -303,14 +287,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'H'
-                    ? color.pink
-                    : props.wrongWord?.match(/H/)
-                    ? color.darkGray
-                    : props.correctWord.includes('H')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/H/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/H/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('H')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>H</Text>
@@ -321,14 +304,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'J'
-                    ? color.pink
-                    : props.wrongWord?.match(/J/)
-                    ? color.darkGray
-                    : props.correctWord.includes('J')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/J/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/J/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('J')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>J</Text>
@@ -339,14 +321,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'K'
-                    ? color.pink
-                    : props.wrongWord?.match(/K/)
-                    ? color.darkGray
-                    : props.correctWord.includes('K')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/K/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/K/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('K')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>K</Text>
@@ -357,14 +338,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'L'
-                    ? color.pink
-                    : props.wrongWord?.match(/L/)
-                    ? color.darkGray
-                    : props.correctWord.includes('L')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/L/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/L/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('L')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>L</Text>
@@ -383,14 +363,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'Z'
-                    ? color.pink
-                    : props.wrongWord?.match(/Z/)
-                    ? color.darkGray
-                    : props.correctWord.includes('Z')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/Z/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/Z/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('Z')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>Z</Text>
@@ -401,14 +380,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'X'
-                    ? color.pink
-                    : props.wrongWord?.match(/X/)
-                    ? color.darkGray
-                    : props.correctWord.includes('X')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/X/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/X/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('X')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>X</Text>
@@ -419,14 +397,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'C'
-                    ? color.pink
-                    : props.wrongWord?.match(/C/)
-                    ? color.darkGray
-                    : props.correctWord.includes('C')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/C/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/C/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('C')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>C</Text>
@@ -437,14 +414,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'V'
-                    ? color.pink
-                    : props.wrongWord?.match(/V/)
-                    ? color.darkGray
-                    : props.correctWord.includes('V')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/V/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/V/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('V')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>V</Text>
@@ -455,14 +431,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'B'
-                    ? color.pink
-                    : props.wrongWord?.match(/B/)
-                    ? color.darkGray
-                    : props.correctWord.includes('B')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/B/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/B/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('B')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>B</Text>
@@ -473,14 +448,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'N'
-                    ? color.pink
-                    : props.wrongWord?.match(/N/)
-                    ? color.darkGray
-                    : props.correctWord.includes('N')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/N/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/N/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('N')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>N</Text>
@@ -491,14 +465,13 @@ const CustomKeyboard = (props = defaultProps) => {
             style={[
               styles.keyStyle,
               {
-                backgroundColor:
-                  props.existWord == 'M'
-                    ? color.pink
-                    : props.wrongWord?.match(/M/)
-                    ? color.darkGray
-                    : props.correctWord.includes('M')
-                    ? color.lightGreen
-                    : color.keyGreen,
+                backgroundColor: props.existWord?.match(/M/)
+                  ? color.wrongSpot
+                  : props.wrongWord?.match(/M/)
+                  ? color.notInSpot
+                  : props.correctWord.includes('M')
+                  ? color.correctPlace
+                  : color.keyGreen,
               },
             ]}>
             <Text style={styles.textStyle}>M</Text>
@@ -507,7 +480,7 @@ const CustomKeyboard = (props = defaultProps) => {
             onPress={() => props.onKeyPress('CLEAR')}
             activeOpacity={0.7}
             style={styles.backSpaceButton}>
-            <svgIndex.delete />
+            <svgIndex.delete fill={color.white} />
           </TouchableOpacity>
         </View>
       </View>

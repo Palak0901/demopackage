@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import React, { useContext, useState, useEffect } from 'react';
 import style from './style';
 import { CustomStatusBar, Header, ShareModal } from '../../components';
@@ -9,12 +9,19 @@ import screenName from '../../navigation/screenName';
 import gameContext from '../../context/GameContext';
 import { get } from '../../service/config/request';
 import constant from '../../service/config/constant';
+import StatisticsCard from '../../components/card/statisticsCard/statisticsCard';
 
 const StatisticsScreen = () => {
   const gameInterface = useContext(gameContext);
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
-  const [statisticsData, setStatisticsData] = useState([])
+  const [statisticsData, setStatisticsData] = useState([
+    { name: 'Words\nSolved', number: '15' },
+    { name: 'Time\nused', number: '2' },
+    { name: 'Number\nof\nhints', number: '6' },
+    { name: 'Wrong\nwords', number: '0' },
+    { name: 'Number\nof\nattempts', number: '2' },
+  ]);
 
   const getStatisticsData = () => {
     get(constant.stats).then(res => {
@@ -40,52 +47,27 @@ const StatisticsScreen = () => {
         },
         gameInterface.containerStyle.contentContainerStyle,
       ]}>
-      <CustomStatusBar />
+      <CustomStatusBar backgroundColor={color.themeColor} />
       <ShareModal visible={visible} onClose={() => setVisible(!visible)} />
       <Header
         leftIcon={svgIndex.backArrow}
         rightIcon={svgIndex.share}
         onRightIcon={() => setVisible(true)}
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.navigate(screenName.gameRules)}
       />
       <View style={style.centerContainer}>
         <Text style={style.statisticsText}>Statistics</Text>
-        <View style={style.boxMainView}>
-          <View style={style.boxContainer}>
-            <View style={style.boxView}>
-              <Text style={style.numberText}>15</Text>
-            </View>
-            <Text style={style.labelText}>Words{'\n'}solved</Text>
-          </View>
-
-          <View style={style.boxContainer}>
-            <View style={style.boxView}>
-              <Text style={style.numberText}>2</Text>
-            </View>
-            <Text style={style.labelText}>Time{'\n'}used</Text>
-          </View>
-
-          <View style={style.boxContainer}>
-            <View style={style.boxView}>
-              <Text style={style.numberText}>6</Text>
-            </View>
-            <Text style={style.labelText}>Number {'\n'}of hints</Text>
-          </View>
-          <View style={style.boxContainer}>
-            <View style={style.boxView}>
-              <Text style={style.numberText}>0</Text>
-            </View>
-            <Text style={style.labelText}>Wrong {'\n'}words</Text>
-          </View>
-          <View style={style.boxContainer}>
-            <View style={style.boxView}>
-              <Text style={style.numberText}>2</Text>
-            </View>
-            <Text style={style.labelText}>
-              Number{'\n'}of{'\n'}attemps
-            </Text>
-          </View>
-        </View>
+        <FlatList
+          data={statisticsData}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item, index }) => (
+            <StatisticsCard
+              item={item}
+              index={index}
+            />
+          )}
+        />
       </View>
     </View>
   );
