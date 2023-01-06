@@ -7,8 +7,8 @@ import { svgIndex } from '../../assets';
 import { useNavigation } from '@react-navigation/native';
 import screenName from '../../navigation/screenName';
 import gameContext from '../../context/GameContext';
-import { get } from '../../service/config/request';
-import constant from '../../service/config/constant';
+import { get } from '../../services/config/request';
+import constant from '../../services/config/constant';
 import StatisticsCard from '../../components/card/statisticsCard/statisticsCard';
 
 const StatisticsScreen = () => {
@@ -41,11 +41,11 @@ const StatisticsScreen = () => {
       style={[
         style.container,
         {
-          backgroundColor: gameInterface.containerStyle?.themeColor
-            ? gameInterface.containerStyle?.themeColor
+          backgroundColor: gameInterface?.containerStyle?.themeColor
+            ? gameInterface?.containerStyle?.themeColor
             : color.themeColor,
         },
-        gameInterface.containerStyle.contentContainerStyle,
+        gameInterface?.containerStyle?.contentContainerStyle,
       ]}>
       <CustomStatusBar backgroundColor={color.themeColor} />
       <ShareModal visible={visible} onClose={() => setVisible(!visible)} />

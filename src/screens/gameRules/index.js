@@ -1,42 +1,69 @@
-import React, { useContext, useEffect } from 'react';
-import { View, Text, FlatList, ScrollView } from 'react-native';
+import React, {useContext, useEffect} from 'react';
+import {View, Text, FlatList, ScrollView} from 'react-native';
 import style from './style';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Button, CustomStatusBar, Header } from '../../components';
-import { color } from '../../theme';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {Button, CustomStatusBar, Header} from '../../components';
+import {color} from '../../theme';
 import svgIndex from '../../assets/svgIndex';
 import screenName from '../../navigation/screenName';
 import GameContext from '../../context/GameContext';
-import { get, doPostWithAuth } from '../../service/config/request';
-import constant from '../../service/config/constant';
-import { useDispatch, useSelector } from 'react-redux';
-import { startGameSuccess } from '../../services/redux/userGame/action';
+import {get, doPostWithAuth} from '../../services/config/request';
+import constant from '../../services/config/constant';
+import {useDispatch, useSelector} from 'react-redux';
+import {startGameSuccess} from '../../services/redux/userGame/action';
 import Confirmation from '../../components/common/confirmation/Confirmation';
 import GameRulesCard from '../../components/card/gameRulesCard/GameRulesCard';
 import gameRulesConstant from './gameRules.constant';
+import params from '../../services/config/params';
 
 const GameRules = props => {
+  const gameInterface = useContext(GameContext);
   const getUserDetails = () => {
-    get(`${constant.participation}?id=${16}`).then(res => {
-      console.log('Get Data success', res);
-    }).catch(e => {
-      console.log('error', e);
-    })
-  }
+    get(`${constant.participation}?id=${16}`)
+      .then(res => {
+        console.log('Get Data success', res);
+      })
+      .catch(e => {
+        console.log('error', e);
+      });
+  };
 
   useEffect(() => {
-    getUserDetails()
-  }, [])
+    // getUserDetails();
+    readInstruction();
+  }, []);
+
+  const readInstruction = () => {
+    get(constant.readInstruction, params.Token)
+      .then(res => {
+        console.log('User get instruction', res);
+      })
+      .catch(e => {
+        console.log('Get Game details error', e);
+      });
+  };
+
+  const updateInstruction = () => {
+    get(constant.updateInstruction, params.Token)
+      .then(res => {
+        console.log('Game instruction read successfull', res);
+        props.navigation.navigate(screenName.gameScreen);
+      })
+      .catch(e => {
+        console.log('Get Game details error', e);
+      });
+  };
+
   return (
     <View
       style={[
         style.container,
         {
-          backgroundColor: gameInterface.containerStyle?.themeColor
-            ? gameInterface.containerStyle?.themeColor
+          backgroundColor: gameInterface?.containerStyle?.themeColor
+            ? gameInterface?.containerStyle?.themeColor
             : color.themeColor,
         },
-        gameInterface.containerStyle.contentContainerStyle,
+        gameInterface?.containerStyle?.contentContainerStyle,
       ]}>
       <SafeAreaProvider>
         <CustomStatusBar backgroundColor={color.themeColor} />
@@ -72,7 +99,7 @@ const GameRules = props => {
                 style.gameView,
                 {
                   backgroundColor: gameInterface.containerStyle?.themeColor
-                    ? gameInterface.containerStyle?.themeColor
+                    ? gameInterface?.containerStyle?.themeColor
                     : color.themeColor,
                 },
               ]}>
@@ -82,7 +109,7 @@ const GameRules = props => {
                   numColumns={5}
                   scrollEnabled={false}
                   contentContainerStyle={style.contentContainerStyle}
-                  renderItem={({ item, index }) => (
+                  renderItem={({item, index}) => (
                     <GameRulesCard
                       item={item}
                       index={index}
@@ -102,7 +129,7 @@ const GameRules = props => {
                   numColumns={5}
                   scrollEnabled={false}
                   contentContainerStyle={style.contentContainerStyle}
-                  renderItem={({ item, index }) => (
+                  renderItem={({item, index}) => (
                     <GameRulesCard
                       item={item}
                       index={index}
@@ -122,7 +149,7 @@ const GameRules = props => {
                   numColumns={5}
                   scrollEnabled={false}
                   contentContainerStyle={style.contentContainerStyle}
-                  renderItem={({ item, index }) => (
+                  renderItem={({item, index}) => (
                     <GameRulesCard
                       item={item}
                       index={index}
@@ -139,7 +166,9 @@ const GameRules = props => {
             </View>
             <Button
               name={'Next'}
-              onPress={() => props.navigation.navigate(screenName.gameScreen)}
+              onPress={() => {
+                updateInstruction();
+              }}
               buttonContainer={style.nextButton}
             />
           </View>

@@ -76,8 +76,8 @@ const LeaderBoard = props => {
       style={[
         style.container,
         {
-          backgroundColor: gameInterface.containerStyle?.themeColor
-            ? gameInterface.containerStyle?.themeColor
+          backgroundColor: gameInterface?.containerStyle?.themeColor
+            ? gameInterface?.containerStyle?.themeColor
             : color.themeColor,
         },
         gameInterface?.containerStyle?.contentContainerStyle,

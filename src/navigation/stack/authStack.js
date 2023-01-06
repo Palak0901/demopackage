@@ -1,6 +1,6 @@
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import WelcomeScreen from '../../screens/welcomeScreen';
 import screenName from '../screenName';
 import Types from '../../screens/typeScreen';
@@ -12,11 +12,11 @@ import StatisticsScreen from '../../screens/statistics';
 import LeaderBoard from '../../screens/leaderBoard';
 import UserProfile from '../../screens/userProfile';
 import GameRules from '../../screens/gameRules';
-import {NavigationContainer} from '@react-navigation/native';
-import {navigationRef} from '../../utility/navigationService';
+import { NavigationContainer } from '@react-navigation/native';
+import { navigationRef } from '../../utility/navigationService';
 import CorrectWord from '../../screens/correctWord';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 const authStack = props => {
   return (
     <Stack.Navigator
@@ -30,12 +30,12 @@ const authStack = props => {
       <Stack.Screen
         component={SuccessScreen}
         name={screenName.successScreen}
-        options={{presentation: 'transparentModal'}}
+        options={{ presentation: 'transparentModal' }}
       />
       <Stack.Screen
         component={LossScreen}
         name={screenName.lossScreen}
-        options={{presentation: 'transparentModal'}}
+        options={{ presentation: 'transparentModal' }}
       />
       <Stack.Screen component={UnlockScreen} name={screenName.unlockScreen} />
       <Stack.Screen

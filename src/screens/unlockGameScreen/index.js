@@ -1,10 +1,10 @@
-import {View, Text, Image} from 'react-native';
-import React, {useContext} from 'react';
+import { View, Text, Image } from 'react-native';
+import React, { useContext } from 'react';
 import style from './style';
-import {Button, CustomStatusBar, Header} from '../../components';
-import {color} from '../../theme';
-import {imageindex, svgIndex} from '../../assets';
-import {useNavigation} from '@react-navigation/native';
+import { Button, CustomStatusBar, Header } from '../../components';
+import { color } from '../../theme';
+import { imageindex, svgIndex } from '../../assets';
+import { useNavigation } from '@react-navigation/native';
 import gameContext from '../../context/GameContext';
 
 const UnlockScreen = () => {
@@ -15,8 +15,8 @@ const UnlockScreen = () => {
       style={[
         style.container,
         {
-          backgroundColor: gameInterface.containerStyle?.themeColor
-            ? gameInterface.containerStyle?.themeColor
+          backgroundColor: gameInterface?.containerStyle?.themeColor
+            ? gameInterface?.containerStyle?.themeColor
             : color.themeColor,
         },
         gameInterface?.containerStyle?.contentContainerStyle,
@@ -41,7 +41,7 @@ const UnlockScreen = () => {
         <Button
           name={'Unlock immediately (5 TerCoins)'}
           buttonContainer={style.coinButton}
-          buttonText={{color: color.buttonGreen}}
+          buttonText={{ color: color.buttonGreen }}
         />
       </View>
     </View>

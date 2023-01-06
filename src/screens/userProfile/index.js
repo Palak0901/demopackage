@@ -1,9 +1,9 @@
-import {View, Text, Image, ScrollView} from 'react-native';
-import React, {useContext} from 'react';
-import {color} from '../../theme';
-import {CustomStatusBar, Header} from '../../components';
-import {imageindex, svgIndex} from '../../assets';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { View, Text, Image, ScrollView } from 'react-native';
+import React, { useContext } from 'react';
+import { color } from '../../theme';
+import { CustomStatusBar, Header } from '../../components';
+import { imageindex, svgIndex } from '../../assets';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import style from './style';
 import gameContext from '../../context/GameContext';
 
@@ -15,8 +15,8 @@ const UserProfile = props => {
       style={[
         style.container,
         {
-          backgroundColor: gameInterface.containerStyle?.themeColor
-            ? gameInterface.containerStyle?.themeColor
+          backgroundColor: gameInterface?.containerStyle?.themeColor
+            ? gameInterface?.containerStyle?.themeColor
             : color.themeColor,
         },
         gameInterface?.containerStyle?.contentContainerStyle,
@@ -38,10 +38,10 @@ const UserProfile = props => {
               {userDetails?.rank == 1
                 ? 'st'
                 : userDetails?.rank == 2
-                ? 'nd'
-                : userDetails?.rank == 3
-                ? 'rd'
-                : 'th'}
+                  ? 'nd'
+                  : userDetails?.rank == 3
+                    ? 'rd'
+                    : 'th'}
             </Text>
           </View>
           <Image source={imageindex.userOne} style={style.imageView} />

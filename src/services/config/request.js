@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Alert } from 'react-native';
+import {Alert} from 'react-native';
 // import RNFetchBlob from 'rn-fetch-blob';
 
 import constant from './constant';
@@ -12,11 +12,9 @@ const ErrorHandler = async error => {
     Alert.alert('No Internet', 'Check Your Internet Connection .');
   } else if (error.status == 401) {
     //await navigateAndSimpleReset(utils.screenName.session, 0);
-  }
-  else if (error.message == 'Request failed with status code 400') {
+  } else if (error.message == 'Request failed with status code 400') {
     //alert()
-  }
-  else if (error.message == 'Request failed with status code 500') {
+  } else if (error.message == 'Request failed with status code 500') {
     Alert.alert(
       'Server Error',
       'This last action was not completed successfully.',
@@ -31,10 +29,14 @@ const ErrorHandler = async error => {
   }
 };
 
-const get = slug => {
+const get = (slug, token) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(slug)
+      .get(slug, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
       .then(response => {
         isError = 0;
         resolve(response.data);
@@ -178,7 +180,6 @@ const doDelete = (slug, token) => {
 //     })
 //   });
 // };
-
 
 export {
   get,

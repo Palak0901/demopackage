@@ -1,7 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { svgIndex } from '../../assets';
+import {useNavigation} from '@react-navigation/native';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {FlatList, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {svgIndex} from '../../assets';
 import {
   Button,
   CustomKeyboard,
@@ -9,19 +9,19 @@ import {
   Header,
   UnlockGame,
 } from '../../components';
-import { color } from '../../theme';
+import {color} from '../../theme';
 import styles from './style';
 import screenName from '../../navigation/screenName';
 import BackgroundTimer from 'react-native-background-timer';
 import gameContext from '../../context/GameContext';
-import { ScrollView } from 'react-native-gesture-handler';
-import { doPostWithAuth } from '../../service/config/request';
-import constant from '../../service/config/constant';
-import params from '../../service/config/params';
-import { useDispatch, useSelector } from 'react-redux';
+import {ScrollView} from 'react-native-gesture-handler';
+import {doPostWithAuth, get} from '../../services/config/request';
+import constant from '../../services/config/constant';
+import gameConstant from './gameconstant';
+import params from '../../services/config/params';
+import {useDispatch, useSelector} from 'react-redux';
 import Confirmation from '../../components/common/confirmation/Confirmation';
-import { saveGameSuccess } from '../../services/redux/userGame/action';
-import constant from './constant';
+import {saveGameSuccess} from '../../services/redux/userGame/action';
 import InsetShadow from 'react-native-inset-shadow';
 import moment from 'moment';
 
@@ -33,59 +33,61 @@ const GameScreen = props => {
   const [correctWord, setCorrectWord] = useState([]);
   const inputRef = useRef([]);
   const [completeGameModal, setCompleteGameModal] = useState(false);
-  const [rightWord, setRightWord] = useState('WATER');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [words, setWord] = useState([
-    { word: '', color: '', disable: false },
-    { word: '', color: '', disable: false },
-    { word: '', color: '', disable: false },
-    { word: '', color: '', disable: false },
-    { word: '', color: '', disable: false },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
-    { word: '', color: '', disable: true },
+    {word: '', color: '', disable: false},
+    {word: '', color: '', disable: false},
+    {word: '', color: '', disable: false},
+    {word: '', color: '', disable: false},
+    {word: '', color: '', disable: false},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
+    {word: '', color: '', disable: true},
   ]);
   const data = useSelector(item => item.userGame);
+  const userdata = useSelector(item => item.userGame);
   const dispatch = useDispatch();
-  const [currentWord, setCurrentWord] = useState(
-    constant.gameWord[data?.gameId - 1],
-  );
   const [lastIndex, setLastIndex] = useState(4);
   const [gameTime, setGameTime] = useState(120);
   const [gameFinishedByTimeOut, setGameFinishedByTimeOut] = useState(true);
   const [limitModal, setLimitModal] = useState(false);
   const [saveGameModal, setSaveGameModal] = useState(false);
   const [continueGameModal, setContinueGameModal] = useState(false);
-
+  const [todayGame, setTodayGame] = useState([]);
+  const [currentWord, setCurrentWord] = useState(todayGame[data?.gameId]);
+  // console.log('gameId', data.gameId);
+  // console.log('currentWord', todayGame[data?.gameId]?.word);
+  // console.log('time', gameTime);
+  // console.log('userdata?.todaysPlay', userdata?.todaysPlay);
   useEffect(() => {
     inputRef?.current[0]?.focus();
-    if (data?.resumeGame) {
+    if (userdata?.resumeGame) {
       setContinueGameModal(true);
     }
-    if (data?.todaysPlay > 10) {
+    if (userdata?.todaysPlay == 3) {
       setLimitModal(true);
     }
     if (!moment(data?.lastPlayOn).isSame(new Date(), 'day')) {
@@ -105,43 +107,45 @@ const GameScreen = props => {
       playNewGame();
     }
   }, [props?.route?.params?.continue]);
+
   // Function for replay game
   const playNewGame = () => {
     let temp = [
-      { word: '', color: '', disable: false },
-      { word: '', color: '', disable: false },
-      { word: '', color: '', disable: false },
-      { word: '', color: '', disable: false },
-      { word: '', color: '', disable: false },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
-      { word: '', color: '', disable: true },
+      {word: '', color: '', disable: false},
+      {word: '', color: '', disable: false},
+      {word: '', color: '', disable: false},
+      {word: '', color: '', disable: false},
+      {word: '', color: '', disable: false},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
+      {word: '', color: '', disable: true},
     ];
+    console.log('new game id:', userdata.gameId);
     setWrongWord('');
     setCorrectWord([]);
-    setCurrentWord(constant.gameWord[data?.gameId - 1]);
+    setCurrentWord(todayGame[userdata.gameId]);
     setSelectedIndex(0);
     setLastIndex(4);
     setCompleteGameModal(false);
@@ -179,6 +183,18 @@ const GameScreen = props => {
         }
       });
     }
+    // console.log(
+    //   'gameComplete',
+    //   (selectedIndex + 1) / 5,
+    //   Math.floor((gameTime % 3600) / 60)
+    //     .toString()
+    //     .padStart(2, '0'),
+    //   Math.floor(gameTime % 60)
+    //     .toString()
+    //     .padStart(2, '0'),
+    //   currentWord._id,
+    //   showHint,
+    // );
 
     if (gameComplete.length == 5) {
       setCompleteGameModal(true);
@@ -216,14 +232,15 @@ const GameScreen = props => {
         }),
       );
       navigation.navigate(screenName.correctWord, {
-        rightWord: currentWord?.word,
+        rightWord: currentWord?.word?.toUppercase(),
       });
     }
+    // console.log('solved', completeGameModal);
   };
 
   const checkWordEnterWord = (key, index) => {
     // Function for show correct , incorrect and wrong position color while typing
-    const rightWordArray = currentWord?.word?.split('');
+    const rightWordArray = currentWord?.word?.toUpperCase()?.split('');
     let data = words.slice(index, index + 1);
     if (data[0].word === rightWordArray[index % 5]) {
       words.splice(index, 1, {
@@ -301,30 +318,35 @@ const GameScreen = props => {
       }
     }
   };
+  useEffect(() => {
+    findGame();
+  }, []);
 
   useEffect(() => {
     let Timer = BackgroundTimer.setTimeout(() => {
-      if (!saveGameModal && !continueGameModal) {
-        if (gameFinishedByTimeOut || data?.todaysPlay > 10) {
-          if (gameTime.valueOf(0)) {
-            setGameTime(gameTime - 1);
+      if (todayGame.length !== 0) {
+        if (!saveGameModal && !continueGameModal) {
+          if (gameFinishedByTimeOut || userdata?.todaysPlay == 3) {
+            if (gameTime.valueOf(0)) {
+              setGameTime(gameTime - 1);
+            } else {
+              navigation.navigate(screenName.correctWord, {
+                rightWord: currentWord?.word,
+              });
+              dispatch(
+                saveGameSuccess({
+                  gameId: data?.gameId + 1,
+                  todaysPlay: data?.todaysPlay + 1,
+                  data: [],
+                  resumeGame: false,
+                  gameTime: 120,
+                  lastPlayOn: moment().toString(),
+                }),
+              );
+            }
           } else {
-            navigation.navigate(screenName.correctWord, {
-              rightWord: currentWord?.word,
-            });
-            dispatch(
-              saveGameSuccess({
-                gameId: data?.gameId + 1,
-                todaysPlay: data?.todaysPlay + 1,
-                data: [],
-                resumeGame: false,
-                gameTime: 120,
-                lastPlayOn: moment().toString(),
-              }),
-            );
+            // console.log('Game Finished in ::', gameTime);
           }
-        } else {
-          // console.log('Game Finished in ::', gameTime);
         }
       }
     }, 1000);
@@ -336,12 +358,11 @@ const GameScreen = props => {
 
   function TimerCountdown(e) {
     const m = Math.floor((e % 3600) / 60)
-      .toString()
-      .padStart(2, '0'),
+        .toString()
+        .padStart(2, '0'),
       s = Math.floor(e % 60)
         .toString()
         .padStart(2, '0');
-
     return m + ':' + s;
   }
   // function for save game details
@@ -387,52 +408,54 @@ const GameScreen = props => {
     setContinueGameModal(false);
   };
 
-  useEffect(() => {
-    playGame()
-  }, [])
+  // const playGame = () => {
+  //   doPostWithAuth(`${gameConstant.game}?id=${2}`, '', 'token')
+  //     .then(res => {
+  //       console.log('Get Game Details success');
+  //       findGame(res.data.level);
+  //     })
+  //     .catch(e => {
+  //       console.log('Get Game details error');
+  //     });
+  // };
 
-
-  const playGame = () => {
-    doPostWithAuth(`${constant.game}?id=${2}`, '', 'token').then(res => {
-      console.log('Get Game Details success');
-      findGame(res.data.level)
-    }).catch(e => {
-      console.log('Get Game details error');
-    })
-  }
-
-  const findGame = (gameLevel) => {
-    let formData = new FormData()
-    formData.append(params.GameType, 'WordGame')
-    formData.append(params.Level, gameLevel)
-    doPostWithAuth(constant.find, formData, 'token').then(res => {
-      console.log('Get Game Details success');
-    }).catch(e => {
-      console.log('Get Game details error');
-    })
-  }
+  const findGame = () => {
+    get(constant.getTodayGame, params.Token)
+      .then(res => {
+        console.log('Get Game success', res.data);
+        setTodayGame(res.data);
+        setCurrentWord(res.data[userdata.gameId]);
+        userdata?.todaysPlay !== 3 && setGameTime(119);
+        // console.log('userdata?.todaysPlay', userdata?.todaysPlay);
+      })
+      .catch(e => {
+        console.log('Get Game error', e);
+      });
+  };
 
   const playNextGame = () => {
-    let formData = new FormData()
-    formData.append(params.GameType, 'WordGame')
-    formData.append(params.Level, gameLevel)
-    doPostWithAuth(constant.find, formData, 'token').then(res => {
-      console.log('Get Game Details success');
-    }).catch(e => {
-      console.log('Get Game details error');
-    })
-  }
+    let formData = new FormData();
+    formData.append(params.GameType, 'WordGame');
+    formData.append(params.Level, gameLevel);
+    doPostWithAuth(constant.find, formData, 'token')
+      .then(res => {
+        console.log('Get Game Details success');
+      })
+      .catch(e => {
+        console.log('Get Game details error');
+      });
+  };
 
   return (
     <View
       style={[
         styles.container,
         {
-          backgroundColor: gameInterface.containerStyle?.themeColor
-            ? gameInterface.containerStyle?.themeColor
+          backgroundColor: gameInterface?.containerStyle?.themeColor
+            ? gameInterface?.containerStyle?.themeColor
             : color.themeColor,
         },
-        gameInterface.containerStyle.contentContainerStyle,
+        gameInterface?.containerStyle?.contentContainerStyle,
       ]}>
       <CustomStatusBar backgroundColor={color.themeColor} />
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -458,7 +481,7 @@ const GameScreen = props => {
           leftIcon={svgIndex.backArrow}
         />
         <UnlockGame
-          visible={limitModal ^ (data?.todaysPlay > 10)}
+          visible={limitModal && userdata?.todaysPlay == 3}
           onCancel={() => {
             navigation.navigate(screenName.gameRules);
             setLimitModal(false);
@@ -474,7 +497,7 @@ const GameScreen = props => {
               <View style={styles.hintView}>
                 <TouchableOpacity
                   style={styles.hintButton}
-                  onPress={() => setShowHint(!showHint)}>
+                  onPress={() => setShowHint(true)}>
                   <Text style={styles.hintText}>Hint</Text>
                 </TouchableOpacity>
               </View>
@@ -497,7 +520,7 @@ const GameScreen = props => {
                 completeGameModal && styles.contentContainer
               }
               style={styles.listStyle}
-              renderItem={({ item, index }) => {
+              renderItem={({item, index}) => {
                 return (
                   <InsetShadow
                     shadowColor={color.shadowColor}
@@ -547,8 +570,7 @@ const GameScreen = props => {
                   color: color.white,
                   marginTop: 10,
                 }}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore et dolore magna.
+                {currentWord?.description}
               </Text>
               {data.todaysPlay % 2 == 0 && (
                 <View style={styles.playButtonContainer}>

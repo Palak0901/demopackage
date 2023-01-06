@@ -1,8 +1,14 @@
 export default {
-  BaseURL: 'https://63930ed411ed187986a92761.mockapi.io/api/v1/game/',
+  BaseURL: 'http://35.177.56.74:3013/',
   game: 'game',
   stats: 'stats',
   next: 'next',
   find: 'find',
-  participation: 'participation'
+  participation: 'participation',
+  todayGame: 'get-today-game',
+  login: 'login',
+  readInstruction: 'read-instruction',
+  updateInstruction: 'update-instruction',
+  saveGame: 'save-game',
+  getTodayGame: 'get-today-game',
 };

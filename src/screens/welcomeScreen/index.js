@@ -1,15 +1,15 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native';
-import React, {useContext, useState} from 'react';
-import {styles} from './style';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { styles } from './style';
 import {
   CustomStatusBar,
   Header,
   ShareModal,
   UnlockGame,
 } from '../../components';
-import {color} from '../../theme';
-import {imageindex, svgIndex} from '../../assets';
-import {useNavigation} from '@react-navigation/native';
+import { color } from '../../theme';
+import { imageindex, svgIndex } from '../../assets';
+import { useNavigation } from '@react-navigation/native';
 import screenName from '../../navigation/screenName';
 import gameContext from '../../context/GameContext';
 

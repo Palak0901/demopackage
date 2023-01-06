@@ -1,8 +1,8 @@
-import React, {memo, useContext} from 'react';
-import {View, StatusBar, StyleProp, ViewStyle} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import React, { memo, useContext } from 'react';
+import { View, StatusBar, StyleProp, ViewStyle } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import gameContext from '../../../context/GameContext';
-import {color} from '../../../theme';
+import { color } from '../../../theme';
 type propType = {
   containerStyle: StyleProp<ViewStyle>,
   backgroundColor: String,
@@ -17,8 +17,8 @@ const CustomStatusBar = (props: propType) => {
       style={[
         {
           height: insets.top,
-          backgroundColor: gameInterface.containerStyle?.themeColor
-            ? gameInterface.containerStyle?.themeColor
+          backgroundColor: gameInterface?.containerStyle?.themeColor
+            ? gameInterface?.containerStyle?.themeColor
             : color.themeColor,
         },
         props.containerStyle,
@@ -26,8 +26,8 @@ const CustomStatusBar = (props: propType) => {
       <StatusBar
         animated={true}
         backgroundColor={
-          props.backgroundColor || gameInterface.containerStyle?.themeColor
-            ? gameInterface.containerStyle?.themeColor
+          props.backgroundColor || gameInterface?.containerStyle?.themeColor
+            ? gameInterface?.containerStyle?.themeColor
             : color.themeColor
         }
         barStyle={'light-content'}
